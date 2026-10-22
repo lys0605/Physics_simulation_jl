@@ -3,7 +3,7 @@ using CairoMakie
 include(joinpath(@__DIR__, "..", "src", "mechanics", "pendulum.jl"))
 
 L = 1.0
-θ0 = 1.2   # ~69° — small-angle approx starts to break down
+θ0 = π/2.6   # ~69° — small-angle approx starts to break down
 sol = simulate_pendulum(θ0=θ0, L=L, tspan=(0.0, 10.0))
 
 ts = range(sol.t[1], sol.t[end]; length=300)
