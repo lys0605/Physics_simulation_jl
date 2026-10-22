@@ -22,7 +22,6 @@ in a straight line between bounces.
 | Script | What it shows |
 |---|---|
 | [`scripts/01_projectile.jl`](scripts/01_projectile.jl) | Ballistic trajectory with quadratic air drag |
-| [`scripts/02_pendulum.jl`](scripts/02_pendulum.jl) | Nonlinear pendulum vs small-angle approximation, side by side |
 | [`scripts/03_double_pendulum.jl`](scripts/03_double_pendulum.jl) | Chaotic double pendulum with fading trail |
 | [`scripts/04_spring_mass.jl`](scripts/04_spring_mass.jl) | Damped harmonic oscillator + live phase-space plot |
 
@@ -32,15 +31,16 @@ in a straight line between bounces.
 |---|---|---|
 | [`scripts/geometry/13_catenoid.jl`](scripts/geometry/13_catenoid.jl) | Catenoid as a soap-film minimal surface (H = 0): two equal rings stretch apart; the neck radius shrinks self-consistently until the critical separation h/R ≈ 0.6627 is reached, at which point the film snaps into two flat discs | MP4 |
 
-### Nonlinear dynamics — dynamical billiards
+### Moved to Physics Atlas
 
-| Script | What it shows | Output |
-|---|---|---|
-| [`scripts/nonlinear/06_billiards_circle.jl`](scripts/nonlinear/06_billiards_circle.jl) | Integrable circular billiard: three orbits with distinct rotation numbers; chords accumulate to reveal the caustic; Poincaré section builds up to horizontal invariant lines | MP4 |
-| [`scripts/nonlinear/07_billiards_stadium.jl`](scripts/nonlinear/07_billiards_stadium.jl) | Bunimovich stadium (λ₁ ≈ 0.85): ergodic long-time trajectory fills the domain uniformly; two orbits separated by Δφ = 10⁻⁵ diverge into uncorrelated paths | MP4 |
-| [`scripts/nonlinear/08_billiards_poincare.jl`](scripts/nonlinear/08_billiards_poincare.jl) | Side-by-side Poincaré sections of four billiards: square and circle (integrable, invariant curves) vs stadium and Sinai (chaotic, uniform scatter) | PNG |
+These scenes now live, rebuilt and checked, in [lys0605/physics-atlas](https://github.com/lys0605/physics-atlas). The old versions are in this repository's history (commit 8397691).
 
-Theory and mathematical background: [`docs/nonlinear/billiards_theory.md`](docs/nonlinear/billiards_theory.md)
+| Old | Now |
+|---|---|
+| `scripts/02_pendulum.jl` | `mec.pendulum-large-angle` |
+| `scripts/nonlinear/06–08_billiards_*.jl`, `src/nonlinear/billiards.jl`, `docs/nonlinear/billiards_theory.md` | `nld.billiards` |
+| `scripts/em/14_fresnel.jl` | `opt.fresnel` |
+| `docs/lattice/interactive_viewer.html` | `cmp.brillouin-zones` |
 
 ### Condensed-matter — Green's functions & topological systems
 
@@ -62,7 +62,6 @@ fields, Biot-Savart, Hertzian dipole retarded fields).
 
 | Script | What it shows | Output |
 |---|---|---|
-| [`scripts/em/14_fresnel.jl`](scripts/em/14_fresnel.jl) | Fresnel R/T vs angle for s- and p-polarisation; Brewster angle; critical angle and TIR; Snell's law for multiple media; phase shifts; wavefront diagram | PNG |
 | [`scripts/em/15_multipoles.jl`](scripts/em/15_multipoles.jl) | Electrostatic potential heat maps and field-line streamplots for monopole, dipole, quadrupole, and octupole charge configurations | PNG |
 | [`scripts/em/16_magnetic_fields.jl`](scripts/em/16_magnetic_fields.jl) | Biot-Savart field maps (log-magnitude + streamlines) for a magnetic dipole, a single circular loop, a Helmholtz coil (uniform-field region), and an anti-Helmholtz / Maxwell coil (linear gradient) | PNG |
 | [`scripts/em/17_radiation.jl`](scripts/em/17_radiation.jl) | Animated E_z snapshot of a Hertzian dipole radiating into the xz-plane over one full oscillation period; side panel shows the sin²θ polar power pattern | MP4 |
@@ -82,7 +81,7 @@ vertex enumeration for half-space intersection).
 
 Theory and mathematical background: [`docs/lattice/lattice_theory.md`](docs/lattice/lattice_theory.md)
 
-**Interactive viewer:** [`docs/lattice/interactive_viewer.html`](docs/lattice/interactive_viewer.html) — a self-contained HTML/Three.js page (no install) that lets you pick from all 14 3-D Bravais lattices (including rhombohedral), tune their parameters with sliders, toggle primitive vs conventional cell, and rotate the real-space lattice + reciprocal vectors + Brillouin zone freely with the mouse. Open the file directly in any modern browser.
+**Interactive viewer:** moved to Physics Atlas (`cmp.brillouin-zones`).
 
 ### Monte Carlo and Quantum Monte Carlo
 

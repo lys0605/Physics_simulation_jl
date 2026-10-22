@@ -1,7 +1,7 @@
 # Bravais Lattices, Voronoi Cells, Wigner-Seitz Cells, and Brillouin Zones
 
 > **Interactive companion:** open
-> [`interactive_viewer.html`](interactive_viewer.html) in any browser to
+> [`interactive viewer (now the Physics Atlas scene `cmp.brillouin-zones`)`](interactive viewer (now the Physics Atlas scene `cmp.brillouin-zones`)) in any browser to
 > rotate any of the 14 Bravais lattices, switch between primitive and
 > conventional cells, and watch the Brillouin zone update live as you
 > change parameters (`a`, `c`, `α`, …).  Useful while reading this note —
