@@ -311,7 +311,7 @@ The simulation files mirror each conceptual layer:
 | `src/lattice/lattice_utils.jl`                | Bravais lattices, primitive ↔ conventional, reciprocal |
 | `src/lattice/voronoi.jl`                      | half-space intersection — 2-D polygon clip + 3-D vertex enumeration |
 | `scripts/lattice/lattices_2d.jl`              | five 2-D Bravais lattices with both cell choices |
-| `scripts/lattice/lattices_3d.jl`              | SC, BCC, FCC — conventional cubic vs primitive |
+| moved to Physics Atlas (`cmp.brillouin-zones`) | SC, BCC, FCC and the other 11 lattices — conventional vs primitive |
 | `scripts/lattice/voronoi.jl`                  | general Voronoi diagram (random) → WS cell for a lattice |
 | `scripts/lattice/brillouin.jl`                | WS (real) vs BZ (reciprocal), 2-D and 3-D |
 

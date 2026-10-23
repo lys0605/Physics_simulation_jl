@@ -17,14 +17,6 @@ in a straight line between bounces.
 
 ## Scenes included
 
-### Classical mechanics
-
-| Script | What it shows |
-|---|---|
-| [`scripts/01_projectile.jl`](scripts/01_projectile.jl) | Ballistic trajectory with quadratic air drag |
-| [`scripts/03_double_pendulum.jl`](scripts/03_double_pendulum.jl) | Chaotic double pendulum with fading trail |
-| [`scripts/04_spring_mass.jl`](scripts/04_spring_mass.jl) | Damped harmonic oscillator + live phase-space plot |
-
 ### Geometry — minimal surfaces
 
 | Script | What it shows | Output |
@@ -33,11 +25,16 @@ in a straight line between bounces.
 
 ### Moved to Physics Atlas
 
-These scenes now live, rebuilt and checked, in [lys0605/physics-atlas](https://github.com/lys0605/physics-atlas). The old versions are in this repository's history (commit 8397691).
+These scenes now live, rebuilt and checked, in [lys0605/physics-atlas](https://github.com/lys0605/physics-atlas). The old versions are in this repository's history (commits 8397691 and 1dce21e).
 
 | Old | Now |
 |---|---|
-| `scripts/02_pendulum.jl` | `mec.pendulum-large-angle` |
+| `scripts/02_pendulum.jl`, `src/mechanics/pendulum.jl` | `mec.pendulum-large-angle` |
+| `scripts/01_projectile.jl`, `src/mechanics/projectile.jl` | `mec.projectile-drag` |
+| `scripts/03_double_pendulum.jl`, `src/mechanics/double_pendulum.jl` | `nld.double-pendulum` |
+| `scripts/04_spring_mass.jl`, `src/mechanics/spring_mass.jl` | `mec.driven-oscillator` |
+| `scripts/05_cyclic_pursuit.jl`, `src/mechanics/cyclic_pursuit.jl` | `mec.cyclic-pursuit` |
+| `scripts/lattice/lattices_3d.jl` | `cmp.brillouin-zones` (conventional and primitive cells of all 14 lattices) |
 | `scripts/nonlinear/06–08_billiards_*.jl`, `src/nonlinear/billiards.jl`, `docs/nonlinear/billiards_theory.md` | `nld.billiards` |
 | `scripts/em/14_fresnel.jl` | `opt.fresnel` |
 | `docs/lattice/interactive_viewer.html` | `cmp.brillouin-zones` |
@@ -75,7 +72,6 @@ vertex enumeration for half-space intersection).
 | Script | What it shows | Output |
 |---|---|---|
 | [`scripts/lattice/lattices_2d.jl`](scripts/lattice/lattices_2d.jl) | All five 2-D Bravais lattices (oblique, rectangular, centered rectangular, square, triangular/hexagonal) with primitive vectors, primitive cell, and conventional cell overlaid | PNG |
-| [`scripts/lattice/lattices_3d.jl`](scripts/lattice/lattices_3d.jl) | Simple-cubic, BCC, and FCC lattices with conventional cubic cell (atoms at corners/faces/body) side-by-side with the primitive parallelepiped | PNG |
 | [`scripts/lattice/voronoi.jl`](scripts/lattice/voronoi.jl) | Voronoi tessellation of random points; specialisation to lattices showing the Wigner-Seitz cell as the Voronoi cell of a Bravais lattice; explicit bisector-construction zoom | PNG |
 | [`scripts/lattice/brillouin.jl`](scripts/lattice/brillouin.jl) | Real-space WS cells alongside reciprocal-space Brillouin zones; for BCC and FCC, both the primitive BZ (rhombic dodecahedron / truncated octahedron) and the conventional cubic reciprocal cell are drawn | PNG |
 
@@ -142,17 +138,15 @@ DifferentialEquations and CairoMakie. Subsequent launches are fast.
 ## Running a scene
 
 ```bash
-julia --project=. scripts/01_projectile.jl
+julia --project=. scripts/geometry/13_catenoid.jl
 ```
 
-The MP4 appears in `output/videos/01_projectile.mp4`. Same pattern for the
+The MP4 appears in `output/videos/13_catenoid.mp4`. Same pattern for the
 other scripts.
 
 ## Project layout
 
 ```
-src/mechanics/   reusable physics models — pure ODE right-hand-sides
-                 plus simulate_* helpers that return an ODESolution
 src/greens/      Green's function / condensed-matter models
 src/em/          electromagnetic utilities (Fresnel, multipoles, Biot-Savart, dipole)
 src/lattice/     Bravais lattices, reciprocal lattice, Voronoi / WS / BZ algorithms
@@ -164,11 +158,11 @@ output/plots/    rendered PNG output (gitignored)
 Project.toml     pinned Julia environment
 ```
 
-The split is deliberate: physics lives in `src/mechanics/` and knows
+The split is deliberate: physics lives in `src/<area>/` and knows
 nothing about plotting, while `scripts/` files know nothing about how the
-ODE is integrated. The same mechanics file can be reused across multiple
-scenes — for example, the pendulum model is used to visualise both the
-raw motion and the small-angle comparison.
+model is computed. The same physics file can be reused across several
+scenes — for example, `src/greens/qwz_model.jl` serves all four
+Green's-function scripts.
 
 ## Plotting utilities (`src/plot_utils.jl`)
 
@@ -345,7 +339,7 @@ Key keyword arguments: `color`, `color_values`, `colormap`, `clabel`,
 
 ## How a scene is built
 
-Every script follows the same skeleton:
+Every script follows the same skeleton (shown with the projectile scene, which has since moved to Physics Atlas):
 
 ```julia
 using Pkg; Pkg.activate(joinpath(@__DIR__, ".."))
@@ -374,7 +368,7 @@ Two conventions keep the animations smooth and reproducible:
 
 ## Adding a new scene
 
-1. Create `src/mechanics/<name>.jl` exposing a `simulate_<name>` helper
+1. Create `src/<area>/<name>.jl` exposing a `simulate_<name>` helper
    that returns an `ODESolution`. Keep it pure — no plotting, no I/O.
 2. Copy any script in `scripts/` as a template, swap the `include` and
    `simulate_` call, then use a helper from `plot_utils.jl` to render.
