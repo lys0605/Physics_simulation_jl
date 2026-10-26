@@ -25,7 +25,7 @@ in a straight line between bounces.
 
 ### Moved to Physics Atlas
 
-These scenes now live, rebuilt and checked, in [lys0605/physics-atlas](https://github.com/lys0605/physics-atlas). The old versions are in this repository's history (commits 8397691 and 1dce21e).
+These scenes now live, rebuilt and checked, in [lys0605/physics-atlas](https://github.com/lys0605/physics-atlas). The old versions are in this repository's history (commits 8397691, 1dce21e and f70930e).
 
 | Old | Now |
 |---|---|
@@ -38,6 +38,8 @@ These scenes now live, rebuilt and checked, in [lys0605/physics-atlas](https://g
 | `scripts/nonlinear/06–08_billiards_*.jl`, `src/nonlinear/billiards.jl`, `docs/nonlinear/billiards_theory.md` | `nld.billiards` |
 | `scripts/em/14_fresnel.jl` | `opt.fresnel` |
 | `docs/lattice/interactive_viewer.html` | `cmp.brillouin-zones` |
+| `scripts/lattice/lattices_2d.jl` | `cmp.lattices-2d` (all five 2D lattices, cells, zones, lattice lines) |
+| `scripts/lattice/brillouin.jl` | `cmp.lattices-2d` (2D) and `cmp.brillouin-zones` (3D) |
 
 ### Condensed-matter — Green's functions & topological systems
 
@@ -71,9 +73,7 @@ vertex enumeration for half-space intersection).
 
 | Script | What it shows | Output |
 |---|---|---|
-| [`scripts/lattice/lattices_2d.jl`](scripts/lattice/lattices_2d.jl) | All five 2-D Bravais lattices (oblique, rectangular, centered rectangular, square, triangular/hexagonal) with primitive vectors, primitive cell, and conventional cell overlaid | PNG |
 | [`scripts/lattice/voronoi.jl`](scripts/lattice/voronoi.jl) | Voronoi tessellation of random points; specialisation to lattices showing the Wigner-Seitz cell as the Voronoi cell of a Bravais lattice; explicit bisector-construction zoom | PNG |
-| [`scripts/lattice/brillouin.jl`](scripts/lattice/brillouin.jl) | Real-space WS cells alongside reciprocal-space Brillouin zones; for BCC and FCC, both the primitive BZ (rhombic dodecahedron / truncated octahedron) and the conventional cubic reciprocal cell are drawn | PNG |
 
 Theory and mathematical background: [`docs/lattice/lattice_theory.md`](docs/lattice/lattice_theory.md)
 
